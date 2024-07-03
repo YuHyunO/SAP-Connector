@@ -2,6 +2,10 @@ package lab.access.sap.util.method;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * @author Yuhyun O
+ * @since 2024-07-03
+ * */
 @Slf4j
 public class StringUtil {
     public static final String SUB_STRING = "subString";

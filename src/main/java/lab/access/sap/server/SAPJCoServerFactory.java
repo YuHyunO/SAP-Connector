@@ -6,6 +6,10 @@ import lombok.extern.slf4j.Slf4j;
 import java.lang.reflect.Field;
 import java.util.*;
 
+/**
+ * @author Yuhyun O
+ * @since 2024-07-03
+ * */
 @Data
 @Slf4j
 public class SAPJCoServerFactory {

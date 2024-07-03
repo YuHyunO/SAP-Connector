@@ -7,6 +7,10 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
+/**
+ * @author Yuhyun O
+ * @since 2024-07-03
+ * */
 @Slf4j
 public class InMemoryJCoServerPropsAccessor implements JCoServerPropsAccessor {
     private static Map<String, Properties> serverPropsStorage;

@@ -5,6 +5,10 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
+/**
+ * @author Yuhyun O
+ * @since 2024-07-03
+ * */
 public class InMemoryJCoDestinationAccessor implements JCoDestinationAccessor {
     private static Map<String, Properties> destinationStorage;
 

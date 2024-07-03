@@ -9,16 +9,20 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.Properties;
 import java.util.Set;
 
+/**
+ * @author Yuhyun O
+ * @since 2024-07-03
+ * */
 @Slf4j
-public class MesimJCoDestinationProvider implements DestinationDataProvider {
-    private static MesimJCoDestinationProvider destProvider;
+public class SAPJCoDestinationProvider implements DestinationDataProvider {
+    private static SAPJCoDestinationProvider destProvider;
     private static JCoDestinationAccessor destAccessor;
 
-    public MesimJCoDestinationProvider() {
+    public SAPJCoDestinationProvider() {
         destProvider = this;
     }
 
-    public static MesimJCoDestinationProvider getInstance() {
+    public static SAPJCoDestinationProvider getInstance() {
         if (destProvider != null) {
             return destProvider;
         } else {

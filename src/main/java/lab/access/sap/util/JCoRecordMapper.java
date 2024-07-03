@@ -7,6 +7,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author Yuhyun O
+ * @since 2024-07-03
+ * */
 @Data
 public class JCoRecordMapper {
     private String dateFormat = "yyyyMMdd";

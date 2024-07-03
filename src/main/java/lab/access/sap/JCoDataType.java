@@ -1,5 +1,9 @@
 package lab.access.sap;
 
+/**
+ * @author Yuhyun O
+ * @since 2024-07-03
+ * */
 public class JCoDataType {
     public static final int JCO_TABLE_ROWS = 4004;
     public static final int JCO_IMPORT_PARAMETERS = 4005;

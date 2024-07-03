@@ -4,8 +4,12 @@ import com.sap.conn.jco.server.DefaultServerHandlerFactory;
 import com.sap.conn.jco.server.JCoServerContext;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * @author Yuhyun O
+ * @since 2024-07-03
+ * */
 @Slf4j
-public class MesimJCoFunctionHandlerFactory extends DefaultServerHandlerFactory {
+public class SAPJCoFunctionHandlerFactory extends DefaultServerHandlerFactory {
 
 
     @Override

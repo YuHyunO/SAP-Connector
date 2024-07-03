@@ -6,6 +6,10 @@ import lombok.Data;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author Yuhyun O
+ * @since 2024-07-03
+ * */
 @Data
 public class JCoCallableValueMapper {
     private String method;

@@ -7,15 +7,19 @@ import com.sap.conn.jco.ext.ServerDataProvider;
 import java.util.Properties;
 import java.util.Set;
 
-public class MesimJCoServerProvider implements ServerDataProvider {
-    private static MesimJCoServerProvider serverProvider;
+/**
+ * @author Yuhyun O
+ * @since 2024-07-03
+ * */
+public class SAPJCoServerProvider implements ServerDataProvider {
+    private static SAPJCoServerProvider serverProvider;
     private static JCoServerPropsAccessor serverPropsAccessor;
 
-    public MesimJCoServerProvider() {
+    public SAPJCoServerProvider() {
         serverProvider = this;
     }
 
-    public static MesimJCoServerProvider getInstance() {
+    public static SAPJCoServerProvider getInstance() {
         if (serverProvider != null) {
             return serverProvider;
         } else {

@@ -10,6 +10,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author Yuhyun O
+ * @since 2024-07-03
+ * */
 @Slf4j
 public class JCoUtil {
 
