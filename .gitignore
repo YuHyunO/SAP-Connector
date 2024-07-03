@@ -1,4 +1,4 @@
 target/
 lib/
 .idea/
-/src/main/resources/
+/src/main/resources/log4j.xml

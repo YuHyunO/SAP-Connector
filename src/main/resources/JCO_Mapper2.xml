@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcoMappers>
+	<jcoMapper id="IF_TEST_02">
+		<tables>
+			<name from="ITTAB1" to="DB_TAB1"/>
+			<name from="ITTAB2" to="DB_TAB2"/>
+
+			<table name="ITTAB2">
+				<field from="SAP_FIELD4" to="DB_FIELD4"/>
+				<field from="SAP_FIELD5" to="DB_FIELD5"/>
+				<field from="SAP_FIELD6" to="DB_FIELD6"/>
+			</table>
+		</tables>
+
+		<parameters>
+			<import>
+				<field from="IPARAM1" to="DB_FILED1"/>
+				<field from="IPARAM2" to="DB_FILED2"/>
+			</import>
+
+			<export>
+				<field from="EPARAM1" to="DB_FILED111"/>
+				<field from="EPARAM2" to="DB_FILED2"/>
+			</export>
+
+			<changing>
+				<field from="CPARAM1" to="DB_FILED1"/>
+				<field from="CPARAM2" to="DB_FILED2"/>
+
+				<structure name="CPARAM3">
+					<field from="C_FIELD1" to="DB_FIELD1"/>
+					<field from="C_FIELD2" to="DB_FIELD2"/>
+					<field from="C_FIELD3" to="DB_FIELD3"/>
+				</structure>
+				<structure name="CPARAM4">
+					<field from="C_FIELD11" to="DB_FIELD11"/>
+					<field from="C_FIELD22" to="DB_FIELD22"/>
+					<field from="C_FIELD33" to="DB_FIELD33"/>
+				</structure>
+			</changing>
+		</parameters>
+
+		<structures>
+			<import>
+				<field from="I_STRUCT1" to="DB_TABLE5"/>
+				<field from="I_STRUCT2" to="DB_TABLE6"/>
+				<structure name="I_STRUCT2">
+					<field from="I_S_FIELD1" to="DB_FIELD1"/>
+					<field from="I_S_FIELD2" to="DB_FIELD2"/>
+					<field from="I_S_FIELD3" to="DB_FIELD3"/>
+				</structure>
+			</import>
+			<export>
+				<field from="E_STRUCT1" to="DB_TABLE5"/>
+				<field from="E_STRUCT2" to="DB_TABLE6"/>
+				<structure name="E_STRUCT2">
+					<field from="E_S_FIELD1" to="DB_FIELD1"/>
+					<field from="E_S_FIELD2" to="DB_FIELD2"/>
+					<field from="E_S_FIELD3" to="DB_FIELD3"/>
+				</structure>
+			</export>
+
+		</structures>
+
+		<when if="SUCCESS">
+			<tables>
+				<table name="ITTAB1">
+					<field name="SAP_FLAG_FIELD1" set="S"/>
+					<field name="SAP_FLAG_FIELD2" set="Success"/>
+				</table>
+				<table name="ITTAB2">
+					<field name="SAP_FLAG_FIELD1" set="S"/>
+					<field name="SAP_FLAG_FIELD2" set="Success"/>
+				</table>
+			</tables>
+
+			<structures>
+				<structure name="STRUCT2">
+					<field name="SAP_FLAG_FIELD1" set="S"/>
+					<field name="SAP_FLAG_FIELD2" set="Success"/>
+				</structure>
+			</structures>
+
+			<parameters>
+				<import>
+					<field name="I_FLAG_PARAM1" set="S"/>
+					<field name="I_FLAG_PARAM2" set="Success"/>
+				</import>
+				<export>
+					<field name="E_FLAG_PARAM1" set="S"/>
+					<field name="E_FLAG_PARAM2" set="Success"/>
+				</export>
+				<changing>
+					<field name="C_FLAG_PARAM1" set="S"/>
+					<field name="C_FLAG_PARAM1" set="Success"/>
+					<structure name="C_FLAG_PARAM3">
+						<field name="C_FLAG_FIELD1" set="S"/>
+						<field name="C_FLAG_FIELD2" set="Success"/>
+					</structure>
+					<structure name="C_FLAG_PARAM4">
+						<field name="C_FLAG_FIELD1" set="S"/>
+						<field name="C_FLAG_FIELD2" set="Failed"/>
+					</structure>
+				</changing>
+			</parameters>
+
+		</when>
+
+		<when if="FAILED">
+
+			<parameters>
+				<import>
+					<field name="I_FLAG_PARAM1" set="F"/>
+					<field name="I_FLAG_PARAM2" set="Failed"/>
+				</import>
+				<export>
+					<field name="E_FLAG_PARAM1" set="F"/>
+					<field name="E_FLAG_PARAM2" set="Failed"/>
+				</export>
+				<changing>
+					<field name="C_FLAG_PARAM1" set="F"/>
+					<field name="C_FLAG_PARAM1" set="Failed"/>
+					<structure name="C_FLAG_PARAM3">
+						<field name="C_FLAG_FIELD1" set="F"/>
+						<field name="C_FLAG_FIELD2" set="Failed"/>
+					</structure>
+					<structure name="C_FLAG_PARAM4">
+						<field name="C_FLAG_FIELD1" set="F"/>
+						<field name="C_FLAG_FIELD2" set="Failed"/>
+					</structure>
+				</changing>
+			</parameters>
+
+		</when>
+
+	</jcoMapper>
+
+</jcoMappers>

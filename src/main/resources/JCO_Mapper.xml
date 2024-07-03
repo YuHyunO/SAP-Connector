@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcoMappers>
+	<jcoMapper id="mesim-data-adapter-ver.2-1.1.jar">
+		<tables>
+			<name from="ITTAB1" to="DB_TAB1"/>
+			<name from="ITTAB2" to="DB_TAB2"/>
+			<table name="ITTAB%2">
+				<field from="SAP_FIELD1" to="DB_FIELD1"/>
+				<field from="SAP_FIELD2" to="DB_FIELD2"/>
+				<field from="SAP_FIELD3" to="DB_FIELD3"/>
+			</table>
+			<table name="ITTAB2">
+				<field from="SAP_FIELD4" to="DB_FIELD4"/>
+				<field from="SAP_FIELD5" to="DB_FIELD5"/>
+				<field from="SAP_FIELD6" to="DB_FIELD6"/>
+			</table>
+		</tables>
+
+		<parameters>
+			<import>
+				<field from="IPARAM#1" to="DB_FILED#1"/>
+				<field from="IPARAM#2" to="DB_FILED#2"/>
+			</import>
+			<import>
+				<field from="IPARAM@3" to="DB_FILED@1"/>
+				<field from="IPARAM@4" to="DB_FILED@2"/>
+			</import>
+			<export>
+				<field from="@@EPARAM1" to="@@DB_FILED111"/>
+				<field from="@@EPARAM2" to="@@DB_FILED2"/>
+			</export>
+			<export>
+				<field from="##EPARAM1" to="##DB_FILED111"/>
+				<field from="##EPARAM2" to="##DB_FILED2"/>
+			</export>
+			<changing>
+				<field from="@@CPARAM1" to="@@DB_FILED1"/>
+				<field from="@@CPARAM2" to="@@DB_FILED2"/>
+				<field from="@@CPARAM3" to="@@DB_TABLE3"/>
+				<field from="@@CPARAM4" to="@@DB_TABLE4"/>
+				<structure name="@@CPARAM3">
+					<field from="@@C_FIELD1" to="@@DB_FIELD1"/>
+					<field from="@@C_FIELD2" to="@@DB_FIELD2"/>
+					<field from="@@C_FIELD3" to="@@DB_FIELD3"/>
+				</structure>
+				<structure name="@@CPARAM4">
+					<field from="@@C_FIELD11" to="@@DB_FIELD11"/>
+					<field from="@@C_FIELD22" to="@@DB_FIELD22"/>
+					<field from="@@C_FIELD33" to="@@DB_FIELD33"/>
+				</structure>
+			</changing>
+			<changing>
+				<field from="##CPARAM1" to="##DB_FILED1"/>
+				<field from="##CPARAM2" to="##DB_FILED2"/>
+				<field from="##CPARAM3" to="##DB_TABLE3"/>
+				<field from="##CPARAM4" to="##DB_TABLE4"/>
+				<structure name="##CPARAM3">
+					<field from="##C_FIELD1" to="##DB_FIELD1"/>
+					<field from="##C_FIELD2" to="##DB_FIELD2"/>
+					<field from="##C_FIELD3" to="##DB_FIELD3"/>
+				</structure>
+				<structure name="##CPARAM4">
+					<field from="##C_FIELD11" to="##DB_FIELD11"/>
+					<field from="##C_FIELD22" to="##DB_FIELD22"/>
+					<field from="##C_FIELD33" to="##DB_FIELD33"/>
+				</structure>
+			</changing>
+		</parameters>
+
+		<structures>
+			<import>
+				<field from="@@I_STRUCT1" to="@@DB_TABLE5"/>
+				<field from="@@I_STRUCT2" to="@@DB_TABLE6"/>
+				<structure name="@@I_STRUCT2">
+					<field from="@@I_S_FIELD1" to="@@DB_FIELD1"/>
+					<field from="@@I_S_FIELD2" to="@@DB_FIELD2"/>
+					<field from="@@I_S_FIELD3" to="@@DB_FIELD3"/>
+				</structure>
+			</import>
+			<export>
+				<field from="@@E_STRUCT1" to="@@DB_TABLE5"/>
+				<field from="@@E_STRUCT2" to="@@DB_TABLE6"/>
+				<structure name="@@E_STRUCT2">
+					<field from="@@E_S_FIELD1" to="@@DB_FIELD1"/>
+					<field from="@@E_S_FIELD2" to="@@DB_FIELD2"/>
+					<field from="@@E_S_FIELD3" to="@@DB_FIELD3"/>
+				</structure>
+				<structure name="@@>>E_STRUCT2">
+					<field from="@@>>E_S_FIELD1" to="@@>>DB_FIELD1"/>
+					<field from="@@>>E_S_FIELD2" to="@@>>DB_FIELD2"/>
+					<field from="@@>>E_S_FIELD3" to="@@>>DB_FIELD3"/>
+				</structure>
+			</export>
+		</structures>
+		<structures>
+			<import>
+				<field from="##I_STRUCT1" to="##DB_TABLE5"/>
+				<field from="##I_STRUCT2" to="##DB_TABLE6"/>
+				<structure name="##I_STRUCT2">
+					<field from="##I_S_FIELD1" to="##DB_FIELD1"/>
+					<field from="##I_S_FIELD2" to="##DB_FIELD2"/>
+					<field from="##I_S_FIELD3" to="##DB_FIELD3"/>
+				</structure>
+			</import>
+			<export>
+				<field from="##E_STRUCT1" to="##DB_TABLE5"/>
+				<field from="##E_STRUCT2" to="##DB_TABLE6"/>
+				<structure name="##E_STRUCT2">
+					<field from="##E_S_FIELD1" to="##DB_FIELD1"/>
+					<field from="##E_S_FIELD2" to="##DB_FIELD2"/>
+					<field from="##E_S_FIELD3" to="##DB_FIELD3"/>
+				</structure>
+			</export>
+		</structures>
+
+
+		<when if="DEFAULT">
+			<tables>
+
+				<table name="ITTAB%1" paramTableName="DB.TABLE">
+					<field name="A" set="#[fieldName1]"/>
+					<field name="B" set="#[fieldName1]"/>
+					<field name="C" set="#[fieldName1]"/>
+					<field name="D" set="#[fieldName1]"/>
+					<field name="E" set="#[fieldName1]"/>
+					<field name="FLAG" set="@{custom_process_status}:{S=99;F=44}"/>
+				</table>
+
+				<table name="ITTAB%2">
+					<field name="G" set="#[tableName.fieldName2]"/>
+					<field name="H" set="H1"/>
+					<field name="I" set="I1"/>
+					<field name="J" set="J1"/>
+					<field name="K" set="K1"/>
+					<field name="L" set="L1"/>
+				</table>
+
+			</tables>
+
+			<structures>
+				<import>
+					<structure name="SE_STRUCT2">
+						<field name="SAP_FLAG_FIELD1" set="11~S"/>
+						<field name="SAP_FLAG_FIELD2" set="~Succsssess"/>
+					</structure>
+					<structure name="SE_STRUCT3">
+						<field name="SAP_FLAG_FIELD1" set="S11"/>
+						<field name="SAP_FLAG_FIELD2" set="Success"/>
+					</structure>
+				</import>
+				<export>
+					<structure name="@SE_STRUCT2">
+						<field name="@SE_FLAG_FIELD1" set="Saas"/>
+						<field name="@SE_FLAG_FIELDs2" set="Success"/>
+					</structure>
+					<structure name="@SE_STRUCT3">
+						<field name="@SE_FLAG_FIELD1" set="zxxS"/>
+						<field name="@SE_FLAG_FIELD2" set="Success"/>
+					</structure>
+				</export>
+			</structures>
+
+			<parameters>
+				<import>
+					<field name="@I_FLAG_PARAM1" set="@SSSSS"/>
+					<field name="@I_FLAG_PARAM2" set="@Success"/>
+				</import>
+				<import>
+					<field name="I_FLAG_PARAM4" set="S"/>
+					<field name="I_FLAG_PARAM3" set="Success"/>
+				</import>
+				<export>
+					<field name="E_FLAG_PARAM1S" set="S"/>
+					<field name="E_FLAG_PARAM2S" set="Success"/>
+				</export>
+				<changing>
+					<field name="%%C_FLAG_PARAM2" set="%%S"/>
+					<field name="%%C_FLAG_PARAM1" set="%%Success"/>
+					<structure name="^^C_FLAG_PARAM3">
+						<field name="^^C_FLAG_FIELD1S" set="^^S"/>
+						<field name="^^C_FLAG_FIELD2S" set="^^Success"/>
+					</structure>
+					<structure name="!!C_FLAG_PARAM4">
+						<field name="!!C_FLAG_FIELD1" set="!!S"/>
+						<field name="!!C_FLAG_FIELD2" set="!!Failed"/>
+					</structure>
+				</changing>
+			</parameters>
+
+		</when>
+
+		<!--<when if="SUCCESS">
+			<tables>
+				<table name="ITTAB%1">
+					<field name="SAP_FLAG_FIELD1" set="S1"/>
+					<field name="SAP_FLAG_FIELD2" set="1Success"/>
+				</table>
+				<table name="ITTAB%2">
+					<field name="SAP_FLAG_FIELD11" set="S2"/>
+					<field name="SAP_FLAG_FIELD22" set="2Success"/>
+				</table>
+			</tables>
+
+			<structures>
+				<import>
+					<structure name="SE_STRUCT2">
+						<field name="SAP_FLAG_FIELD1" set="11~S"/>
+						<field name="SAP_FLAG_FIELD2" set="~Succsssess"/>
+					</structure>
+					<structure name="SE_STRUCT3">
+						<field name="SAP_FLAG_FIELD1" set="S11"/>
+						<field name="SAP_FLAG_FIELD2" set="Success"/>
+					</structure>
+				</import>
+				<export>
+					<structure name="@SE_STRUCT2">
+						<field name="@SE_FLAG_FIELD1" set="Saas"/>
+						<field name="@SE_FLAG_FIELDs2" set="Success"/>
+					</structure>
+					<structure name="@SE_STRUCT3">
+						<field name="@SE_FLAG_FIELD1" set="zxxS"/>
+						<field name="@SE_FLAG_FIELD2" set="Success"/>
+					</structure>
+				</export>
+			</structures>
+
+			<parameters>
+				<import>
+					<field name="@I_FLAG_PARAM1" set="@SSSSS"/>
+					<field name="@I_FLAG_PARAM2" set="@Success"/>
+				</import>
+				<import>
+					<field name="I_FLAG_PARAM4" set="S"/>
+					<field name="I_FLAG_PARAM3" set="Success"/>
+				</import>
+				<export>
+					<field name="E_FLAG_PARAM1S" set="S"/>
+					<field name="E_FLAG_PARAM2S" set="Success"/>
+				</export>
+				<changing>
+					<field name="%%C_FLAG_PARAM2" set="%%S"/>
+					<field name="%%C_FLAG_PARAM1" set="%%Success"/>
+					<structure name="^^C_FLAG_PARAM3">
+						<field name="^^C_FLAG_FIELD1S" set="^^S"/>
+						<field name="^^C_FLAG_FIELD2S" set="^^Success"/>
+					</structure>
+					<structure name="!!C_FLAG_PARAM4">
+						<field name="!!C_FLAG_FIELD1" set="!!S"/>
+						<field name="!!C_FLAG_FIELD2" set="!!Failed"/>
+					</structure>
+				</changing>
+			</parameters>
+
+		</when>
+
+		<when if="FAILED">
+			<tables>
+				<table name="ITTAB!!1">
+					<field name="SAP_FLAG_FIELD14" set="1F"/>
+					<field name="SAP_FLAG_FIELD24" set="FFFailed"/>
+				</table>
+				<table name="ITTAB!!2">
+					<field name="SAP_FLAG_FIELD15" set="2F"/>
+					<field name="SAP_FLAG_FIELD25" set="FFFailedd"/>
+				</table>
+			</tables>
+			<parameters>
+				<import>
+					<field name="I_FLAG_PARAM14" set="F"/>
+					<field name="I_FLAG_PARAM24" set="Failed"/>
+				</import>
+				<export>
+					<field name="E_FLAG_PARAM1F" set="F"/>
+					<field name="E_FLAG_PARAM2F" set="Failed"/>
+				</export>
+				<changing>
+					<field name="BBC_FLAG_PARAM1" set="BBF"/>
+					<field name="BBC_FLAG_PARAM2" set="BBFailed"/>
+					<structure name="$$C_FLAG_PARAM3">
+						<field name="$$C_FLAG_FIELD1F" set="$$F"/>
+						<field name="$$C_FLAG_FIELD2F" set="$$Failed"/>
+					</structure>
+					<structure name="##C_FLAG_PARAM4">
+						<field name="##C_FLAG_FIELD1" set="##F"/>
+						<field name="##C_FLAG_FIELD2" set="##Failed"/>
+					</structure>
+				</changing>
+			</parameters>
+			<structures>
+				<import>
+					<structure name="SF_STRUCT2">
+						<field name="SF_FLAG_FIELD1" set="$F"/>
+						<field name="SF_FLAG_FIELD2" set="$Failed"/>
+					</structure>
+					<structure name="SF_STRUCT3">
+						<field name="SF_FLAG_FIELD1" set="$F"/>
+						<field name="SF_FLAG_FIELD2" set="$Failed"/>
+					</structure>
+				</import>
+				<export>
+					<structure name="SEF_STRUCT2">
+						<field name="SAP_FLAG_FIELD1" set="실패"/>
+						<field name="SAP_FLAG_FIELD2" set="$Failed"/>
+					</structure>
+					<structure name="SEF_STRUCT3">
+						<field name="SAP_FLAG_FIELD1" set="$F"/>
+						<field name="SAP_FLAG_FIELD2" set="$Failed"/>
+					</structure>
+				</export>
+			</structures>
+		</when>-->
+
+	</jcoMapper>
+
+
+</jcoMappers>
