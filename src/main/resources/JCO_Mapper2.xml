@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcoMappers>
-	<jcoMapper id="IF_TEST_02">
+	<jcoMapper id="MyMapper2">
 		<tables>
 			<name from="ITTAB1" to="DB_TAB1"/>
 			<name from="ITTAB2" to="DB_TAB2"/>
