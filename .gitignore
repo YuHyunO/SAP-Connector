@@ -1,4 +1,4 @@
 target/
 lib/
 .idea/
-**/resources/
+/src/main/resources/
