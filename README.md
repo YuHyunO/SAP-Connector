@@ -127,33 +127,69 @@ src/main/resources/
 
 ### Client Connection Examples
 
-#### 1. Using Destination Factory
+#### 1. Spring Framework Configuration (Recommended)
+
+When using Spring Framework, you can define beans in an XML configuration file as follows:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    <!-- SAP JCo Destination setting -->
+    <bean class="lab.access.sap.client.SAPJCoDestinationProvider" init-method="register">
+        <property name="destinationAccessor">
+            <bean class="lab.access.sap.client.SingleInMemoryDestinationAccessor">
+                <property name="destination" ref="SAP_DESTINATION"/>
+            </bean>
+        </property>
+    </bean>
+    
+    <bean class="lab.access.sap.client.SAPJCoDestinationFactory" id="SAP_DESTINATION">
+        <property name="client_ashost" value="sap-server.example.com"/>
+        <property name="client_client" value="100"/>
+        <property name="client_lang" value="KO"/>
+        <property name="client_user" value="USERNAME"/>
+        <property name="client_passwd" value="PASSWORD"/>
+        <property name="destination_peak_limit" value="10"/>
+        <property name="destination_pool_capacity" value="50"/>
+        <property name="client_mshost" value="sap-server.example.com"/>
+        <property name="client_msserv" value="3600"/>
+        <property name="client_r3name" value="SYSTEM_NAME"/>
+        <property name="client_group" value="GROUP_NAME"/>
+    </bean>
+</beans>
+```
+
+**Note**: 
+- `SingleInMemoryDestinationAccessor` is an Accessor that stores a single Destination in memory.
+- Use `init-method="register"` to automatically register the Provider when the Spring container initializes.
+
+#### 2. Direct Java Code Configuration
+
+If you are not using Spring Framework, you can configure it directly in Java code as follows:
 
 ```java
 import lab.access.sap.client.SAPJCoDestinationFactory;
 import lab.access.sap.client.SAPJCoDestinationProvider;
-import lab.access.sap.client.JCoDestinationAccessor;
-import java.util.Properties;
+import lab.access.sap.client.SingleInMemoryDestinationAccessor;
 
 // Create Destination Factory
 SAPJCoDestinationFactory factory = new SAPJCoDestinationFactory();
 factory.setClient_ashost("sap-server.example.com");
-factory.setClient_sysnr("00");
 factory.setClient_client("100");
+factory.setClient_lang("KO");
 factory.setClient_user("USERNAME");
 factory.setClient_passwd("PASSWORD");
-factory.setClient_lang("EN");
+factory.setDestination_peak_limit("10");
+factory.setDestination_pool_capacity("50");
+factory.setClient_mshost("sap-server.example.com");
+factory.setClient_msserv("3600");
+factory.setClient_r3name("SYSTEM_NAME");
+factory.setClient_group("GROUP_NAME");
 
-// Convert to Properties
-Properties props = factory.toProperties();
-
-// Implement Destination Accessor
-JCoDestinationAccessor accessor = new JCoDestinationAccessor() {
-    @Override
-    public Properties getDesitinationProperties(String name) {
-        return props;
-    }
-};
+// Use SingleInMemoryDestinationAccessor
+SingleInMemoryDestinationAccessor accessor = new SingleInMemoryDestinationAccessor();
+accessor.setDestination(factory);
 
 // Register Provider
 SAPJCoDestinationProvider provider = new SAPJCoDestinationProvider();

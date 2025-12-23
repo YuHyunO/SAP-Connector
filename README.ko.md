@@ -126,33 +126,69 @@ src/main/resources/
 
 ### 클라이언트 연결 예제
 
-#### 1. Destination Factory 사용
+#### 1. Spring Framework를 사용한 설정 (권장)
+
+Spring Framework를 사용하는 경우, 다음과 같이 XML 설정 파일에 Bean을 정의할 수 있습니다:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    <!-- SAP JCo Destination 설정 -->
+    <bean class="lab.access.sap.client.SAPJCoDestinationProvider" init-method="register">
+        <property name="destinationAccessor">
+            <bean class="lab.access.sap.client.SingleInMemoryDestinationAccessor">
+                <property name="destination" ref="SAP_DESTINATION"/>
+            </bean>
+        </property>
+    </bean>
+    
+    <bean class="lab.access.sap.client.SAPJCoDestinationFactory" id="SAP_DESTINATION">
+        <property name="client_ashost" value="sap-server.example.com"/>
+        <property name="client_client" value="100"/>
+        <property name="client_lang" value="KO"/>
+        <property name="client_user" value="USERNAME"/>
+        <property name="client_passwd" value="PASSWORD"/>
+        <property name="destination_peak_limit" value="10"/>
+        <property name="destination_pool_capacity" value="50"/>
+        <property name="client_mshost" value="sap-server.example.com"/>
+        <property name="client_msserv" value="3600"/>
+        <property name="client_r3name" value="SYSTEM_NAME"/>
+        <property name="client_group" value="GROUP_NAME"/>
+    </bean>
+</beans>
+```
+
+**참고**: 
+- `SingleInMemoryDestinationAccessor`는 단일 Destination을 메모리에 저장하는 Accessor입니다.
+- `init-method="register"`를 사용하여 Spring 컨테이너 초기화 시 자동으로 Provider를 등록합니다.
+
+#### 2. Java 코드로 직접 설정
+
+Spring Framework를 사용하지 않는 경우, 다음과 같이 Java 코드로 직접 설정할 수 있습니다:
 
 ```java
 import lab.access.sap.client.SAPJCoDestinationFactory;
 import lab.access.sap.client.SAPJCoDestinationProvider;
-import lab.access.sap.client.JCoDestinationAccessor;
-import java.util.Properties;
+import lab.access.sap.client.SingleInMemoryDestinationAccessor;
 
 // Destination Factory 생성
 SAPJCoDestinationFactory factory = new SAPJCoDestinationFactory();
 factory.setClient_ashost("sap-server.example.com");
-factory.setClient_sysnr("00");
 factory.setClient_client("100");
+factory.setClient_lang("KO");
 factory.setClient_user("USERNAME");
 factory.setClient_passwd("PASSWORD");
-factory.setClient_lang("EN");
+factory.setDestination_peak_limit("10");
+factory.setDestination_pool_capacity("50");
+factory.setClient_mshost("sap-server.example.com");
+factory.setClient_msserv("3600");
+factory.setClient_r3name("SYSTEM_NAME");
+factory.setClient_group("GROUP_NAME");
 
-// Properties로 변환
-Properties props = factory.toProperties();
-
-// Destination Accessor 구현
-JCoDestinationAccessor accessor = new JCoDestinationAccessor() {
-    @Override
-    public Properties getDesitinationProperties(String name) {
-        return props;
-    }
-};
+// SingleInMemoryDestinationAccessor 사용
+SingleInMemoryDestinationAccessor accessor = new SingleInMemoryDestinationAccessor();
+accessor.setDestination(factory);
 
 // Provider 등록
 SAPJCoDestinationProvider provider = new SAPJCoDestinationProvider();
